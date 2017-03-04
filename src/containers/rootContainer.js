@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import { logOutRequest } from '../store/actions/logout';
 import { connect } from 'react-redux';
-import { loadUserRequest } from '../store/actions/loadUserData';
 import { childAddedHandler } from '../store/actions/childAddedHandler';
 
 import * as mat from 'material-ui';
 import './logo.css';
 import {
     browserHistory,
-    Router,
-    Route,
-    IndexRoute,
-    Link,
-    IndexLink
+    Link
 } from 'react-router';
 
 class rootContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { open: false, isAdmin:false };
+        this.state = { open: false, isAdmin: false };
     }
 
     handleClose = () => this.setState({ open: false });
@@ -37,7 +32,7 @@ class rootContainer extends Component {
         browserHistory.push('/addReport');
     };
 
-     gotoComplains = () => {
+    gotoComplains = () => {
         this.setState({ open: !this.state.open })
         browserHistory.push('/myIncidents');
     };
@@ -47,49 +42,28 @@ class rootContainer extends Component {
         browserHistory.push('/viewCrimes');
     };
 
-     gotoAllViewCrimes = () => {
+    gotoAllViewCrimes = () => {
         this.setState({ open: !this.state.open })
         browserHistory.push('/viewAllCrimes');
     };
-
-    componentDidMount() {
-        this.props.loadUserRequest();
-    }
-
-    componentWillReceiveProps() {
-        setTimeout(() => {
-            if (!this.props.application || !this.props.application.user) {
-                browserHistory.push('/login');
-            }else if(this.props.application && this.props.application.user && this.props.application.user.isAdmin){
-                this.setState({isAdmin:true});
-            }
-        }, 5)
-    }
-
-
     logOutRequest = () => {
         this.setState({ open: !this.state.open });
         this.props.logOutRequest();
     }
 
     render() {
+        const style = {
+            margin: '15px',
+        };
         return (
             <div>
                 <mat.AppBar
-                    title="Support System"
-                    onLeftIconButtonTouchTap={this._handleClick}
-                    />
-                <mat.Drawer open={this.state.open}
-                    docked={false}
-                    onRequestChange={(open) => this.setState({ open })}>
-                    <mat.MenuItem disabled className="disbaledImage"><img src="http://www.angani.co/images/img19.png" className="logoImage" /></mat.MenuItem>
-                    <mat.MenuItem onTouchTap={this.gotoDashoard}>Dashoard</mat.MenuItem>
-                    <mat.MenuItem onTouchTap={this.gotoAvailable}>Add Report</mat.MenuItem>
-                    <mat.MenuItem onTouchTap={this.gotoComplains}>View My Compalains</mat.MenuItem>
-                    <mat.MenuItem onTouchTap={this.gotoViewCrimes}>View Crimes List</mat.MenuItem>
-                    {this.state && this.state.isAdmin?<mat.MenuItem onTouchTap={this.gotoAllViewCrimes}>Respond to Crimes</mat.MenuItem>:""}
-                    <mat.MenuItem onTouchTap={this.logOutRequest}>Logout</mat.MenuItem>
-                </mat.Drawer>
+                    title="Crime report complain system" showMenuIconButton={false}>
+                        <mat.RaisedButton label="Write complain" onTouchTap={this.gotoAvailable} type="button" primary={true} style={style} />
+                        <mat.RaisedButton label="Home" onTouchTap={this.gotoDashoard} type="button" primary={true} style={style} />
+                        <mat.RaisedButton label="Crimes List" onTouchTap={this.gotoViewCrimes} type="button" primary={true} style={style} />
+                        <mat.RaisedButton label="LogOut" onTouchTap={this.logOutRequest} type="button" primary={true} style={style} />
+                </mat.AppBar>
                 {this.props.children}
             </div>
         );
@@ -109,7 +83,6 @@ function mapDispatchToProps(dispatch) {
     return {
 
         logOutRequest: () => dispatch(logOutRequest()),
-        loadUserRequest     : () => dispatch(loadUserRequest())
     };
 }
 

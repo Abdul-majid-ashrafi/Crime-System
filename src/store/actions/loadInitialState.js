@@ -1,5 +1,4 @@
 import ActionTypes from './actionTypes';
-import * as fbConfigs from '../../configs/dbconfigs';
 
 export function loadInitialState() {
   return dispatch => {

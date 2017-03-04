@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import Moment from 'react-moment';
 import {
-    browserHistory,
-    Router,
-    Route,
-    IndexRoute,
-    Link,
-    IndexLink
+    Link
 } from 'react-router';
 
 class AdminDashboard extends Component {

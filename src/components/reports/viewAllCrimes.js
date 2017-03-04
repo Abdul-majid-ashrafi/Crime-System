@@ -47,7 +47,6 @@ class ViewAllCrimes extends Component {
   };
 
     componentDidMount() {
-        this.props.loadUserRequest();
         this.props.loadAllCrimesRequest();
     }
 
@@ -99,6 +98,8 @@ class ViewAllCrimes extends Component {
 handleRequiredTypeChange = (event, index, value) => { this.setState({ requiredIncidentType: value }); console.log(value) };
 handleRequiredCityChange = (event, index, value) => { this.setState({ requiredCity: value }); console.log(value) };
     render() {
+        alert()
+        console.log(this.props)
         const that = this;
         const style = {
             minheight: 100,
@@ -168,7 +169,7 @@ handleRequiredCityChange = (event, index, value) => { this.setState({ requiredCi
                 </mat.Table>
                 <form onSubmit={this.handleSubmit} onChange={this.clearErrors}>
                     <mat.TextField
-                                hintText="MultiLine with rows: 2 and rowsMax: 4"
+                                hintText="address"
                                 multiLine={true}
                                 className="full-width-container"
                                 rows={3}
@@ -195,7 +196,9 @@ handleRequiredCityChange = (event, index, value) => { this.setState({ requiredCi
                                 >
                                 {
                                     this.requiredIncidents.map(requiredIncident => {
-                                        return <mat.MenuItem key={requiredIncident} value={requiredIncident} primaryText={requiredIncident==1?"Crime":requiredIncident==2?"Missing":requiredIncident==3?"Complain":requiredIncident==4?"Other":"All"} />
+                                        return <mat.MenuItem key={requiredIncident} value={requiredIncident}
+                                         primaryText={requiredIncident==1?"Crime":requiredIncident==2?
+                                         "Missing":requiredIncident==3?"Complain":requiredIncident==4?"Other":"All"} />
                                     })
                                 }
                             </mat.SelectField>

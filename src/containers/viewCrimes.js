@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import ViewCrimes from '../components/reports/viewCrimes';
 import { loadInitialState } from '../store/actions/loadInitialState';
 import { loadCrimesRequest } from '../store/actions/loadCrimes';
-import { loadUserRequest } from '../store/actions/loadUserData';
 import { childAddedHandler } from '../store/actions/childAddedHandler';
 
 function mapStateToProps(state) {
@@ -17,7 +16,6 @@ function mapDispatchToProps(dispatch) {
   //Those will be the actions we will be Triggerening from Components
   return {
     loadInitialState    : () => dispatch(loadInitialState()),
-    loadUserRequest     : () => dispatch(loadUserRequest()),
     loadCrimesRequest   : () => dispatch(loadCrimesRequest())
   };
 }

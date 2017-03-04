@@ -19,7 +19,6 @@ class LoadMyIncident extends Component {
     }
 
     componentDidMount() {
-        this.props.loadUserRequest();
         this.props.loadMyIncidentsRequest(this.props.application.user);
     }
 

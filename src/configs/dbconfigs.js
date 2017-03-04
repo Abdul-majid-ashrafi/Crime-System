@@ -1,11 +1,11 @@
 import firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyBCbLXIKOptfpJ4WcentEz15TgHveV46kM",
-    authDomain: "cm-reporting-system.firebaseapp.com",
-    databaseURL: "https://cm-reporting-system.firebaseio.com",
-    storageBucket: "cm-reporting-system.appspot.com",
-    messagingSenderId: "612518998251"
+    apiKey: "AIzaSyD4OpUrUlD4d3DZ7UmmFnjAjQE2JQ-6204",
+    authDomain: "react-crimereportapp.firebaseapp.com",
+    databaseURL: "https://react-crimereportapp.firebaseio.com",
+    storageBucket: "react-crimereportapp.appspot.com",
+    messagingSenderId: "761653753246"
 };
 
 firebase.initializeApp(config);

@@ -1,14 +1,14 @@
-import ActionTypes from './actionTypes';
-import * as fbConfigs from '../../configs/dbconfigs';
+// import ActionTypes from './actionTypes';
 
-export function loadUserRequest(loadUserData) {
-    return dispatch => {
-        dispatch(LoadUserRequest());
-    }
-}
+// export function loadUserRequest(loadUserData) {
+//     console.log("loader chalaaaaaaaaaa",loadUserData)
+//     return dispatch => {
+//         dispatch(LoadUserRequest());
+//     }
+// }
 
-function LoadUserRequest() {
-    return {
-        type: ActionTypes.loadUserRequest
-    };
-}
+// function LoadUserRequest() {
+//     return {
+//         type: ActionTypes.loadUserRequest
+//     };
+// }

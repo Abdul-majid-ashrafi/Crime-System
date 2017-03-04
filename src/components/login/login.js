@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import './login.css';
 import * as mat from 'material-ui';
-import {
-    browserHistory,
-    Router,
-    Route,
-    IndexRoute,
-    Link,
-    IndexLink
-} from 'react-router';
+import { browserHistory, Link } from 'react-router';
+// import AppBar from 'material-ui/AppBar';
+
 
 class Login extends Component {
 
@@ -18,27 +13,22 @@ class Login extends Component {
         this.handleSubmit = this.handleLoginSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
-
-
     componentDidMount() {
-        //This is called for Loading Initial State
         this.props.loadInitialState();
     }
-
-    componentWillReceiveProps() {
-        setTimeout(() => {
-            if (this.props.application && this.props.application.user) {
-                browserHistory.push('/dashboard');
-            }
-        },5)
-    }
-
     handleLoginSubmit(evt) {
         evt.preventDefault();
         var email = evt.target.email.value;
         var password = evt.target.password.value;
         var userObj = { "email": email, "password": password };
         this.props.loginRequest(userObj);
+    }
+    componentWillReceiveProps() {
+        setTimeout(() => {
+            if (this.props.application && this.props.application.user) {
+                browserHistory.push('/dashboard');
+            }
+        }, 100)
     }
 
     handleInputChange(event) {
@@ -56,24 +46,24 @@ class Login extends Component {
             textDecoration: 'none',
             color: '#fff'
         }
-        const centerAlign = {
-            textAlign: 'center'
-        }
+        const style = {
+            margin: 12,
+        };
         const { application } = this.props.application;
         return (
             <div className="main-login-div">
-                <mat.Card style={centerAlign}>
-                    <mat.CardText>
-                    <Link to="/viewCrimes" style={customAnchor}><mat.RaisedButton type="button" label="View Incidents Anonymously" primary={true} /></Link>
-                    </mat.CardText>
-                </mat.Card>
+                <mat.AppBar
+                    title="Login"
+                    showMenuIconButton={false}>
+                    <Link to="/signup">
+                        <mat.RaisedButton label="Create account" type="button" primary={true} style={style} />
+                    </Link>
+                </mat.AppBar>
                 <mat.Card>
-                    <mat.CardTitle title="Login" />
                     <mat.CardText>
-                        <p>Don`t Have account? <Link to="/signup">SignUp</Link></p>
                         <form onSubmit={this.handleSubmit} onChange={this.clearErrors}>
                             <mat.TextField
-                                hintText="test@test.com"
+                                hintText="mani@mani.com"
                                 floatingLabelText="Email"
                                 className="full-width-container"
                                 ref="email"
@@ -84,7 +74,7 @@ class Login extends Component {
                                 onChange={this.handleInputChange}
                                 /><br />
                             <mat.TextField
-                                hintText="password"
+                                hintText="123456"
                                 ref="password"
                                 name="password"
                                 required={true}

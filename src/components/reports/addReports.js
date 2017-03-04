@@ -34,17 +34,14 @@ class AddReports extends Component {
     }
 
 
-    componentDidMount() {
-        this.props.loadUserRequest();
-    }
 
-    componentWillReceiveProps() {
-        setTimeout(() => {
-            if (!this.props.application || !this.props.application.user) {
-                browserHistory.push('/login');
-            }
-        }, 5)
-    }
+    // componentWillReceiveProps() {
+    //     setTimeout(() => {
+    //         if (!this.props.application || !this.props.application.user) {
+    //             browserHistory.push('/login');
+    //         }
+    //     }, 5)
+    // }
 
     handleCityTypeChange = (event, index, value) => this.setState({ cityname: value });
     handleInicidentTypeTypeChange = (event, index, value) => this.setState({ inicidentType: value });
@@ -87,7 +84,6 @@ class AddReports extends Component {
     this.setState({
       incidentDate: date,
     });
-    console.log(date);
   };
 
   handleChangeTimePicker12 = (event, date) => {
@@ -98,12 +94,13 @@ class AddReports extends Component {
     render() {
         return (
             <div className="main-login-div">
+             <mat.AppBar
+                    title="Add New Report / Complain"
+                    showMenuIconButton={false}>
+                </mat.AppBar>
                 <mat.Card>
-                    <mat.CardTitle title="Add New Report / Complain" />
                     <mat.CardText>
                         <form onSubmit={this.handleSubmit} onChange={this.clearErrors}>
-                            <h3>Personal Info</h3>
-                            <mat.Divider />
                             <mat.TextField
                                 hintText="John Doe"
                                 floatingLabelText="Affected Person Name"
